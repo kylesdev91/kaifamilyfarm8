@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const { SmsClient } = require('@azure/communication-sms');
 
 module.exports = async function (context, req) {
 //   const { DefaultAzureCredential } = require('@azure/identity');
@@ -20,13 +21,15 @@ module.exports = async function (context, req) {
     },
   });
 
+  const smsClient = new SmsClient('endpoint=https://kffsmscs.communication.azure.com/;accesskey=zM9uliUzojQ+GFjq6/Hewxe82vaLXsFPodOE3im6/wr1AggXC9+SiMYGufTOKM+bKDNYcj3OGXKYJ+FqdyewJA==');
+  
   const mailOptions = {
     from: 'kaifamilyfarm123@outlook.com',
     // from: 'kylehernandez12@outlook.com',
     // to: 'eands9@yahoo.com',
     // from: 'kaifamilyfarm@yahoo.com',
+    // to: 'kaifamilyfarm@yahoo.com',
     to: 'kaifamilyfarm123@outlook.com',
-    // to: 'kaifamilyfarm123@outlook.com',
     // from: 'kylehernandez12@outlook.com',
     // to: 'erichernandez134@outlook.com',
     subject:
@@ -44,7 +47,13 @@ module.exports = async function (context, req) {
     if (error) {
       console.log(error);
     } else {
-      console.log('Sent: ' + info.response);
+        console.log('Sent: ' + info.response);
+        smsClient.send({
+            from: "+18444021959",
+            to: ["+14699106366", "+14695250450"],
+            // to: ["+14699106366", "+14057610896"],
+            message: "Order from  " + req.body.emailAddress + "... " + req.body.orderTotal
+        });
     }
   });
 };

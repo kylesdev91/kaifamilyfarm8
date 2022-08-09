@@ -25,7 +25,7 @@ module.exports = async function (context, req) {
     // from: 'kylehernandez12@outlook.com',
     // to: 'eands9@yahoo.com',
     // from: 'kaifamilyfarm@yahoo.com',
-    to: 'kaifamilyfarm@yahoo.com',
+    to: 'kaifamilyfarm123@outlook.com',
     // to: 'kaifamilyfarm123@outlook.com',
     // from: 'kylehernandez12@outlook.com',
     // to: 'erichernandez134@outlook.com',
